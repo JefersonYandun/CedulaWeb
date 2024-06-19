@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulación de Carrera</title>
+    <title>Validación Cédula Ecuatoriana</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,11 +11,14 @@
             flex-direction: column;
             align-items: center;
             background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
         nav {
             width: 100%;
             background-color: #333;
             padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         nav ul {
             list-style: none;
@@ -42,6 +45,7 @@
             padding: 20px;
             margin-top: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
         h1, h2 {
             color: #333;
@@ -50,13 +54,8 @@
             margin: 5px 0;
             padding: 10px;
             font-size: 1em;
-        }
-        #corredoresList, #historialList {
-            list-style-type: none;
-            padding: 0;
-        }
-        #corredoresList li, #historialList li {
-            padding: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .section {
             display: none;
@@ -67,7 +66,7 @@
             font-size: 16px;
             font-weight: 700;
             color: white;
-            border: 3px solid rgb(252, 70, 100);
+            border: 3px solid #007BFF;
             cursor: pointer;
             position: relative;
             background-color: transparent;
@@ -83,7 +82,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(252, 70, 100);
+            background-color: #007BFF;
             transform: translateX(-100%);
             transition: all .3s;
             z-index: -1;
@@ -91,57 +90,30 @@
         .btn:hover::before {
             transform: translateX(0);
         }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="#listarCorredores" class="btn" onclick="showSection('listarCorredores')">Listar Corredores</a></li>
-            <li><a href="#agregarCorredor" class="btn" onclick="showSection('agregarCorredor')">Agregar Corredor</a></li>
-            <li><a href="#actualizarCorredor" class="btn" onclick="showSection('actualizarCorredor')">Actualizar Corredor</a></li>
-            <li><a href="#eliminarCorredor" class="btn" onclick="showSection('eliminarCorredor')">Eliminar Corredor</a></li>
-            <li><a href="#simularCarrera" class="btn" onclick="showSection('simularCarrera')">Simular Carrera</a></li>
-            <li><a href="#historialCarrera" class="btn" onclick="showSection('historialCarrera')">Historial de Carrera</a></li>
+            <li><a href="#">SISTEMA PARA VALIDAR CÉDULA ECUATORIANA</a></li>
         </ul>
     </nav>
     <div class="content">
-        <h1>Simulación de Carrera</h1>
-        <div id="listarCorredores" class="section">
-            <h2>Corredores</h2>
-            <ul id="corredoresList"></ul>
-            <button class="btn" onclick="getCorredores()">Listar Corredores</button>
-        </div>
-        <div id="agregarCorredor" class="section">
-            <h2>Agregar Corredor</h2>
-            <input type="text" id="nombre" placeholder="Nombre">
-            <button class="btn" onclick="addCorredor()">Agregar</button>
-        </div>
-        <div id="actualizarCorredor" class="section">
-            <h2>Actualizar Corredor</h2>
-            <input type="number" id="idCorredorActualizar" placeholder="ID del Corredor">
-            <input type="text" id="nombreNuevo" placeholder="Nuevo Nombre">
-            <button class="btn" onclick="updateCorredor()">Actualizar</button>
-        </div>
-        <div id="eliminarCorredor" class="section">
-            <h2>Eliminar Corredor</h2>
-            <input type="number" id="idCorredorEliminar" placeholder="ID del Corredor">
-            <button class="btn" onclick="deleteCorredor()">Eliminar</button>
-        </div>
-        <div id="simularCarrera" class="section">
-            <h2>Simular Carrera</h2>
-            <input type="number" id="numeroCorredores" placeholder="Número de Corredores">
-            <input type="number" id="distanciaCarrera" placeholder="Distancia de Carrera (km)">
-            <button class="btn" onclick="simularCarrera()">Simular</button>
-            <pre id="resultado"></pre>
-        </div>
-        <div id="historialCarrera" class="section">
-            <h2>Historial de Carrera</h2>
-            <button class="btn" onclick="getHistorial()">Obtener Historial</button>
-            <ul id="historialList"></ul>
+        <h1>Validación de Cédula Ecuatoriana</h1>
+        <div id="validarCedula" class="section">
+            <h2>Ingrese el número de cédula</h2>
+            <input type="text" id="cedulaInput" placeholder="Número de cédula">
+            <button class="btn" onclick="validarCedula()">Validar Cédula</button>
+            <div id="resultado"></div>
         </div>
     </div>
 
-    <script src="cliente.js"></script>
+    <script src="validarcedula.js"></script>
     <script>
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
@@ -151,8 +123,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Show the first section by default
-            showSection('listarCorredores');
+            showSection('validarCedula');
         });
     </script>
 </body>
